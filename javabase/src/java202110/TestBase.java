@@ -2,9 +2,10 @@ package java202110;
 
 /**
  * @ClassName TestBase
- * @Description TODO
+ * @Description
  * @Author GOFAesir
  * @Data 2021/9/30
  **/
 public class TestBase {
+
 }
