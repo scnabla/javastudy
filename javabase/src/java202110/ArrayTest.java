@@ -9,3 +9,14 @@ package java202110;
 public class ArrayTest {
 
 }
+
+class test{
+    int i = 1;
+
+    public void md(){
+        System.out.println(i);
+    }
+    public void md(String ... p){
+        System.out.println(i+1);
+    }
+}
