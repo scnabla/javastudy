@@ -2,9 +2,11 @@ package jdbcfirst;
 
 import org.junit.Test;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.Driver;
+import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
+
 
 /**
  * @ClassName ConnectionTest
@@ -14,44 +16,12 @@ import java.util.logging.Logger;
  **/
 public class ConnectionTest {
     @Test
-    public void testConnection1(){
-        Driver driver = new Driver() {
-            @Override
-            public Connection connect(String s, Properties properties) throws SQLException {
-                return null;
-            }
+    public void testConnection1() throws SQLException {
 
-            @Override
-            public boolean acceptsURL(String s) throws SQLException {
-                return false;
-            }
+        Driver driver = new com.mysql.jdbc.Driver();
+        String url = null;
+        Properties info = null;
 
-            @Override
-            public DriverPropertyInfo[] getPropertyInfo(String s, Properties properties) throws SQLException {
-                return new DriverPropertyInfo[0];
-            }
-
-            @Override
-            public int getMajorVersion() {
-                return 0;
-            }
-
-            @Override
-            public int getMinorVersion() {
-                return 0;
-            }
-
-            @Override
-            public boolean jdbcCompliant() {
-                return false;
-            }
-
-            @Override
-            public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-                return null;
-            }
-        }
-
-
+        Connection connect = driver.connect(url, info);
     }
 }
