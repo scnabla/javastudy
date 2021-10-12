@@ -17,11 +17,15 @@ import java.util.Properties;
 public class ConnectionTest {
     @Test
     public void testConnection1() throws SQLException {
-
+        //获取数据库连接方式一
         Driver driver = new com.mysql.jdbc.Driver();
-        String url = null;
-        Properties info = null;
+        String url = "jdbc:mysql://localhost:3306/test";
+        Properties info = new Properties();
+        info.setProperty("user","root");
+        info.setProperty("password","root");
 
         Connection connect = driver.connect(url, info);
+
+        System.out.println(connect);
     }
 }
