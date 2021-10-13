@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.sql.Connection;
 import java.sql.Driver;
+import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -42,5 +43,17 @@ public class ConnectionTest {
         Connection connect = o.connect(url, info);
 
         System.out.println(connect);
+    }
+    @Test
+    public void testConnection3() throws Exception {
+        //获取Driver对象
+        Class aClass = Class.forName("com.mysql.jdbc.Driver");
+        Driver o = (Driver)aClass.getDeclaredConstructor().newInstance();
+
+        //注册Driver驱动
+        DriverManager.registerDriver(o);
+
+        DriverManager.getConnection()
+
     }
 }
