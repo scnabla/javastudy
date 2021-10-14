@@ -2,6 +2,8 @@ package jdbcfirst;
 
 import org.junit.Test;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -46,14 +48,36 @@ public class ConnectionTest {
     }
     @Test
     public void testConnection3() throws Exception {
-        //获取Driver对象
+        String url = "jdbc:mysql://localhost:3306/test";
+        String user = "root";
+        String password = "root";
+        //加载Driver驱动
         Class aClass = Class.forName("com.mysql.jdbc.Driver");
         Driver o = (Driver)aClass.getDeclaredConstructor().newInstance();
 
         //注册Driver驱动
         DriverManager.registerDriver(o);
 
-        DriverManager.getConnection()
+        Connection connection = DriverManager.getConnection(url, user, password);
 
+        System.out.println(connection);
+
+    }
+    @Test
+    public void testConnection4() throws Exception {
+        //读取配置文件
+        InputStream is = ConnectionTest.class.getClassLoader().getResourceAsStream("jdbc.properties");
+        Properties properties = new Properties();
+        properties.load(is);
+        String url = properties.getProperty("url");
+        String password = properties.getProperty("password");
+        String user = properties.getProperty("user");
+        String DriverClass = properties.getProperty("DriverClass");
+        //注册加载驱动
+        Class.forName(DriverClass);
+        //获取连接
+        Connection connection = DriverManager.getConnection(url, user, password);
+
+        System.out.println(connection);
     }
 }
